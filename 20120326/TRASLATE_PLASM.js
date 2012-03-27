@@ -11,5 +11,5 @@ var mapping = function(p) {
 //sfrutta l'array p per traslare la retta in 1
 
 var mapped = MAP(mapping)(domain);
-COLOR([1, 0, 0]);
+COLOR([1, 0, 0])(mapped);
 DRAW(mapped);
