@@ -1,6 +1,6 @@
 var draw3DSin = function (r, m) {
 
-	var 3DSinDomain = DOMAIN([[0, 2*PI],[0, PI]])([m, 2*m]);
+	var sinDomain = DOMAIN([[0, 2*PI],[0, PI]])([m, 2*m]);
 
 	var mapping3DSin = function (p) {
 		var u = p[0]-(PI/2);
@@ -12,8 +12,8 @@ var draw3DSin = function (r, m) {
 		return [x, y, z];
 	}
 
-	var mapped3DSin = MAP(mapping3DSin)(3DSinDomain);
+	var mapped3DSin = MAP(mapping3DSin)(sinDomain);
 	
-COLOR([220,0,0])(mapped3DSin);
-DRAW(mapped3DSin);
+	COLOR([0,0,1])(mapped3DSin);
+	DRAW(mapped3DSin);
 }
