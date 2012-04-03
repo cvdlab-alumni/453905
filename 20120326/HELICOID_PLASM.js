@@ -2,7 +2,7 @@
 
 var drawHelicoid = function (r, h, t, n, m) {
 	
-	var helicoidDomain = DOMAIN([[0,t*2*PI],[0,r])([n,m]);
+	var helicoidDomain = DOMAIN([[0,t*2*PI],[0,r]])([n,m]);
 
 	var mappingHelicoid = function (p) {
 		var u = p[0];
