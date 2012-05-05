@@ -8,7 +8,12 @@ var field_aera = COLOR([0,0.392,0])(STRUCT([left_area,right_area]));
 var airstrip_struct = COLOR([0.14,0.14,0.14])(SIMPLEX_GRID([[-40,80],[300],[1]]));
 var airstrip_strips = COLOR([1,1,1])(SIMPLEX_GRID([[-60,-16,8],[50,-12,50,-12,50,-12,50,-12,50],[1.1]]));
 
-var airstrip = STRUCT([field_aera, airstrip_strips, airstrip_struct]);
+var airstrip_landing_lights_left = SIMPLEX_GRID([[-35,3],[-3,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24,3,-24],[3]]);
+var airstrip_landing_lights_right = T([0])([86])(airstrip_landing_lights_left);
+
+var airstrip_landing_lights = COLOR([1,1,0])(STRUCT([airstrip_landing_lights_left, airstrip_landing_lights_right]));
+
+var airstrip = STRUCT([field_aera, airstrip_strips, airstrip_struct,airstrip_landing_lights]);
 
 //Generic wing profile, defined by a first control point set, used in a Bezier curve
 
