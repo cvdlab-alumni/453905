@@ -1,4 +1,4 @@
-var domain = INTERVALS(1)(40);
+var domain = INTERVALS(1)(50);
 var domain1 = DOMAIN([[0,1],[0,1]])([50,50]);
 
 function knots (points) {
@@ -317,8 +317,80 @@ return logo1
 var logo1 = logo(0.6,1.4,32,4,0,0);
 var logo2 = logo(1.5, 3.1, 32.5,35,-4,PI);
 
-var monitor = STRUCT([monitor, logo1, logo2]);
+//USB
+var usb = function (x,y,z) {
+var domain = INTERVALS(1)(40);
+var domain1 = DOMAIN([[0,1],[0,1]])([50,50]);
+var controlpoints1 = [[0.55,0.05,0],[0.55,0,0],[0.5,0,0],[0.3,0,0],[0.05,0,0],[0,0,0],[0,0.05,0],[0,0.75,0],[0,1.25,0],[0,1.3,0],[0.05,1.3,0],[0.3,1.3,0],[0.5,1.3,0],[0.55,1.3,0],[0.55,1.25,0]];
+var controlpoints2 = [[0.55,0.05,0],[0.55,0.5,0],[0.55,1.25,0]];
+
+var knots1 = knots(controlpoints1);
+var knots2 = knots(controlpoints2);
+
+var curva_spline1 = NUBS(S0)(2)(knots1)(controlpoints1);
+var curva_spline2 = NUBS(S0)(2)(knots2)(controlpoints2);
+
+var points_surf = [curva_spline1, curva_spline2, [0,0,0], [0,0,0]];
+var block = CUBIC_HERMITE(S1)(points_surf);
+var usb = COLOR([0,0,0])(MAP(block)(domain1));
+var usb_t = T([0,1,2])([x,y,z])(usb);
+return usb_t
+}
+
+var firewire = function (x,y,z) {
+var domain = INTERVALS(1)(40);
+var domain1 = DOMAIN([[0,1],[0,1]])([50,50]);
+var controlpoints1 = [[0.55,0.05,0],[0.55,0,0],[0.5,0,0],[0.3,0,0],[0.05,0,0],[0,0,0],[0,0.05,0],[0,0.75,0],[0,0.7,0],[0,0.75,0],[0.05,0.75,0],[0.3,1.2,0],[0.5,0.75,0],[0.55,0.75,0],[0.55,0.7,0]];
+var controlpoints2 = [[0.55,0.05,0],[0.55,0.5,0],[0.55,0.7,0]];
+
+var knots1 = knots(controlpoints1);
+var knots2 = knots(controlpoints2);
+
+var curva_spline1 = NUBS(S0)(2)(knots1)(controlpoints1);
+var curva_spline2 = NUBS(S0)(2)(knots2)(controlpoints2);
+
+var points_surf = [curva_spline1, curva_spline2, [0,0,0], [0,0,0]];
+var block = CUBIC_HERMITE(S1)(points_surf);
+var firewire = COLOR([0,0,0])(MAP(block)(domain1));
+var firewire_t = T([0,1,2])([x,y,z])(firewire);
+return firewire_t
+}
+
+var minidisplay = function (x,y,z) {
+var domain = INTERVALS(1)(40);
+var domain1 = DOMAIN([[0,1],[0,1]])([50,50]);
+var controlpoints1 = [[0.55,0.05,0],[0.55,0,0],[0.5,0,0],[0.3,0,0],[0.05,0,0],[0,0,0],[0,0.05,0],[0,0.75,0],[0,0.7,0],[0,0.75,0],[0.05,0.75,0],[0.3,0.75,0],[0.5,0.75,0],[0.55,0.75,0],[0.55,0.7,0]];
+var controlpoints2 = [[0.55,0.05,0],[0.55,0.5,0],[0.55,0.7,0]];
+
+var knots1 = knots(controlpoints1);
+var knots2 = knots(controlpoints2);
+
+var curva_spline1 = NUBS(S0)(2)(knots1)(controlpoints1);
+var curva_spline2 = NUBS(S0)(2)(knots2)(controlpoints2);
+
+var points_surf = [curva_spline1, curva_spline2, [0,0,0], [0,0,0]];
+var block = CUBIC_HERMITE(S1)(points_surf);
+var minidisplay = COLOR([0,0,0])(MAP(block)(domain1));
+var minidisplay_t = T([0,1,2])([x,y,z])(minidisplay);
+return minidisplay_t
+}
+
+var usb1 = usb(60,4,-4.1);
+var usb2 = usb(58.7,4,-4.1);
+var usb3 = usb(57.2,4,-4.1);
+var usb4 = usb(55.7,4,-4.1);
+var usb_ports = STRUCT([usb1, usb2, usb3, usb4]);
+
+var firewire1 = firewire(54,4.1,-4.1);
+var firewire2 = firewire(53,4.1,-4.1);
+var firewire_ports = STRUCT([firewire1, firewire2]) 
+
+var minidisplay1 = minidisplay(51.7, 4.1, -4.1)
+ 
+var monitor = STRUCT([monitor, logo1, logo2, usb_ports, firewire_ports, minidisplay1]);
 var monitor_r = R([1,2])([-PI/10])(monitor);
+
+
 
 //Base
 
@@ -362,19 +434,8 @@ var curva_spline_base_down2 = NUBS(S0)(2)(knots_base_base_down2)(points_base_dow
 
 var point_surf_base_profile_down = [curva_spline_base_down1, curva_spline_base_down2, [0,0,0], [0,0,0]];
 var base_down_profile_curve = CUBIC_HERMITE(S1)(point_surf_base_profile_down);
-
 var base_profile_down = MAP(base_down_profile_curve)(domain1);
-
-
-var base =STRUCT([base_profile, base_profile_up,base_profile_down, base_profile_2])
-
+var base = STRUCT([base_profile, base_profile_up,base_profile_down, base_profile_2])
 var base_trasl = T([0,1,2])([24,-16,-3.5])(R([0,2])([PI/2])(base));
 
-var imac = STRUCT([monitor_r, base_trasl]);
-DRAW(imac);
-
-/*
-Bombatura
-var controlpoints31 = [[0.5,0.5,-4],[0,2,-4],[0,12,-6],[0,25,-6.5],[0,35,-6],[0,45,-4]];
-var controlpoints32 = [[2,0,-4],[2,12,-6],[2,25,-8],[2,35,-6],[2,47,-4]];
-*/
+var scmodel = STRUCT([monitor_r, base_trasl]);
