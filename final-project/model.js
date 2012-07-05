@@ -530,7 +530,7 @@ function pareti_facciata_a_due (x,y,z) {
   var muro_tra_finestre_dx_basso = T([0,1,2])([0,16.4,6.06])(CUBOID([1.40,1.25,2.81]));
   var muro_tra_finestre_dx_alto = T([0,1,2])([0,16.4,9.95])(CUBOID([1.40,1.25,3.6]));
   var chiusura_alto_centro_dx = T([0,1,2])([0,16.4,14.61])(CUBOID([1.40,1.25,0.13]));
-  var muro_sopra_portone = T([0,1,2])([0,11.3,6.06])(CUBOID([1.40,2,8.7]));
+  var muro_sopra_portone = T([0,1,2])([0,11.3,7.56])(CUBOID([1.40,2,7.2]));
 
   var p_cornicione1 =[[0,0,0],[0,0,0.40],[0,0,0.55],[0.185,0,0.725],[0,0,0.90],[0,0,0.92],[0.25,0,1.46],[0.1,0,1.46],[0,0,1.46]];
   var p_cornicione2 = p_cornicione1.map(function (p){ return [p[0],p[1]+23.1,p[2]]});
@@ -712,7 +712,7 @@ function pareti_facciata_a_quattro (x,y,z,a) {
   var chiusura_alto_centro_dx1 = SIMPLEX_GRID([[1.4],[-16.4,1.25],[-14.61,0.13]]);
   var chiusura_alto_centro_dx2 = SIMPLEX_GRID([[1.4],[-14.2,1.25],[-14.61,0.13]]);
 
-  var muro_sopra_portone = SIMPLEX_GRID([[1.4],[-11.3,2],[-6.06,8.7]]);
+  var muro_sopra_portone = SIMPLEX_GRID([[1.4],[-11.3,2],[-7.56,7.2]]);
 
   var p_cornicione1 =[[0,0,0],[0,0,0.40],[0,0,0.55],[0.185,0,0.725],[0,0,0.90],[0.25,0,1.46],[0.1,0,1.46],[0,0,1.46]];
   var p_cornicione2 = p_cornicione1.map(function (p){ return [p[0],p[1]+23.1,p[2]]});
